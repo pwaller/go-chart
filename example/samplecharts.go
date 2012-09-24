@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/ajstarks/svgo"
 	"github.com/vdobler/chart"
-	"github.com/vdobler/chart/imgg"
+	//"github.com/vdobler/chart/imgg"
 	"github.com/vdobler/chart/svgg"
 	"github.com/vdobler/chart/txtg"
 	"image"
@@ -82,8 +82,8 @@ func (d *Dumper) Close() {
 func (d *Dumper) Plot(c chart.Chart) {
 	row, col := d.Cnt/d.N, d.Cnt%d.N
 
-	igr := imgg.AddTo(d.I, col*d.W, row*d.H, d.W, d.H, color.RGBA{0xff, 0xff, 0xff, 0xff}, nil, nil)
-	c.Plot(igr)
+	//igr := imgg.AddTo(d.I, col*d.W, row*d.H, d.W, d.H, color.RGBA{0xff, 0xff, 0xff, 0xff}, nil, nil)
+	//c.Plot(igr)
 
 	sgr := svgg.AddTo(d.S, col*d.W, row*d.H, d.W, d.H, "", 12, color.RGBA{0xff, 0xff, 0xff, 0xff})
 	c.Plot(sgr)
@@ -865,7 +865,7 @@ func testGraphics() {
 	dumper := NewDumper("xgraphics", 1, 1, 1200, 800)
 	defer dumper.Close()
 
-	igr := imgg.AddTo(dumper.I, 0, 0, 1200, 800, color.RGBA{0xff, 0xff, 0xff, 0xff}, nil, nil)
+	//igr := imgg.AddTo(dumper.I, 0, 0, 1200, 800, color.RGBA{0xff, 0xff, 0xff, 0xff}, nil, nil)
 	sgr := svgg.AddTo(dumper.S, 0, 0, 1200, 800, "", 14, color.RGBA{0xff, 0xff, 0xff, 0xff})
 
 	style := chart.Style{LineWidth: 0, LineColor: "#000000", LineStyle: chart.SolidLine}
@@ -874,7 +874,7 @@ func testGraphics() {
 	x0, y0 := 10, 10
 	for w := 1; w <= 10; w++ {
 		style.LineWidth = w
-		igr.Line(x0, y0, x0+50, y0, style)
+		//igr.Line(x0, y0, x0+50, y0, style)
 		sgr.Line(x0, y0, x0+50, y0, style)
 		y0 += w + 5
 	}
@@ -887,7 +887,7 @@ func testGraphics() {
 		"#cc0000", "#00bb00", "#0000dd", "#996600", "#bb00bb", "#00aaaa", "#aaaa00",
 	} {
 		style.LineColor = col
-		igr.Line(x0, y0, x0+50, y0, style)
+		//igr.Line(x0, y0, x0+50, y0, style)
 		sgr.Line(x0, y0, x0+50, y0, style)
 		y0 += 10
 	}
@@ -900,7 +900,7 @@ func testGraphics() {
 		chart.LongDashLine, chart.LongDotLine,
 	} {
 		style.LineStyle = st
-		igr.Line(x0, y0, x0+150, y0, style)
+		// igr.Line(x0, y0, x0+150, y0, style)
 		sgr.Line(x0, y0, x0+150, y0, style)
 		y0 += 5
 
@@ -912,7 +912,7 @@ func testGraphics() {
 		chart.LongDashLine, chart.LongDotLine,
 	} {
 		style.LineStyle = st
-		igr.Line(x0, y0, x0+150, y0, style)
+		// igr.Line(x0, y0, x0+150, y0, style)
 		sgr.Line(x0, y0, x0+150, y0, style)
 		y0 += 12
 
@@ -923,19 +923,19 @@ func testGraphics() {
 	rx, ry := 100, 10
 	px, py := 400, 90
 	text := "(JgbXÄj)"
-	alignedText(igr, text, font, rx, ry, px, py)
+	// alignedText(igr, text, font, rx, ry, px, py)
 	alignedText(sgr, text, font, rx, ry, px, py)
 
 	font.Size = chart.HugeFontSize
 	rx, ry = 100, 100
 	px, py = 400, 180
-	alignedText(igr, text, font, rx, ry, px, py)
+	// alignedText(igr, text, font, rx, ry, px, py)
 	alignedText(sgr, text, font, rx, ry, px, py)
 
 	font.Size = chart.TinyFontSize
 	rx, ry = 100, 190
 	px, py = 400, 270
-	alignedText(igr, text, font, rx, ry, px, py)
+	// alignedText(igr, text, font, rx, ry, px, py)
 	alignedText(sgr, text, font, rx, ry, px, py)
 
 }
